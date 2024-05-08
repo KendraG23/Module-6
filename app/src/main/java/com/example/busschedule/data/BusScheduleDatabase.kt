@@ -32,6 +32,8 @@ abstract class BusScheduleDatabase : RoomDatabase() {
         fun getDatabase(context: Context): BusScheduleDatabase {
             return Instance ?: synchronized(this){
                 Room.databaseBuilder(context, BusScheduleDatabase::class.java, "busSchedule_database")
+                    .createFromAsset("database/bus_schedule.db")
+                    .fallbackToDestructiveMigration()
                     .build()
                     .also { Instance = it }
             }

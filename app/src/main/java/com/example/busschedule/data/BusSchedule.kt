@@ -15,8 +15,10 @@
  */
 package com.example.busschedule.data
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.jetbrains.annotations.NotNull
 
 /*
  *Below is a data class object that describes the parameters needed for each creation of the
@@ -28,7 +30,11 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Schedule") //Annotation marks class as a database Entity class.
 data class BusSchedule(
     @PrimaryKey(autoGenerate = true) //Annotation identifies the primary key of the table. Unique id.
-    val id: Int = 0,
+    val id: Int,
+    @NotNull
+    @ColumnInfo(name = "stop_name")
     val stopName: String,
+    @NotNull
+    @ColumnInfo(name = "arrival_time")
     val arrivalTimeInMillis: Int
 )

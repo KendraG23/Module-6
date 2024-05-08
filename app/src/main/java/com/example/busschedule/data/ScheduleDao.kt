@@ -17,10 +17,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao //Identify the interface as a DAO for Room.
 interface ScheduleDao { //interface describes what must me used by the class implementing interface
     //Annotation in Room library to query the data in the database
-    @Query("SELECT * FROM Schedule ORDER BY arrivalTimeInMillis ASC" )
+    @Query("SELECT * FROM Schedule ORDER BY arrival_time ASC" )
     fun getSchedule():Flow<List<BusSchedule>>
 
-    @Query("SELECT * FROM Schedule WHERE stopName = :stopName")
+    @Query("SELECT * FROM Schedule WHERE stop_name = :stopName ORDER BY arrival_time ASC")
     fun getAppointment(stopName: String): Flow<List<BusSchedule>>
 
 }
